@@ -1,12 +1,11 @@
 class Solution:
     def removeDuplicates(self, arr):
-        curr = arr[0]
-        arr2 = [curr]
-        for x in arr:
-            if x == curr:
+        j = 1
+        for i in range(1, len(arr)):
+            if arr[i] == arr[i - 1]:
                 continue
             
-            curr = x
-            arr2.append(curr)
+            arr[j] = arr[i]
+            j += 1
         
-        return arr2
+        return arr[:j]
