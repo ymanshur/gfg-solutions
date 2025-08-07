@@ -1,18 +1,41 @@
 class Solution:
     def sort012(self, arr):
-        counter = [0] * 3 # 0, 1, 2
-        for i in arr:
-            counter[i] += 1
-        
-        i = 0
-        while i < len(arr):
-            for x in range(0, len(counter)):
-                for _ in range(counter[x]):
-                    arr[i] = x
-                    i += 1
-         
-        
         # _qsort(arr)
+        
+        # counter = [0] * 3 # 0, 1, 2
+        # for i in arr:
+        #     counter[i] += 1
+        
+        # i = 0
+        # for x in range(0, len(counter)):
+        #     for _ in range(counter[x]):
+        #         arr[i] = x
+        #         i += 1
+        
+        # arr = [0, 0, 1, 1, 2, 2]
+        #              l              
+        #                 r
+        #                    i
+
+        n = len(arr)
+        i = 0
+        l = 0
+        r = n - 1
+        while i <= r:
+            if arr[i] == 0:
+                arr[i], arr[l] = arr[l], arr[i]
+                l += 1
+                i += 1
+            elif arr[i] == 1:
+                i += 1
+            else:
+                arr[i], arr[r] = arr[r], arr[i]
+                r -= 1
+            
+            # for x in arr:
+            #     print(x, end = " ")
+            # print()
+        
         
     def _qsort(self, arr, low=0, high=None):
         if high == None:
