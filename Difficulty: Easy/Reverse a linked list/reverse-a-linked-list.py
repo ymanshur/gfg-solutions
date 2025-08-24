@@ -7,22 +7,19 @@ class Node:
 
 class Solution:
     def reverseList(self, head):
-        # None<-1<-2  None
-        #       p
-        #          c
-        #             n
+        stack = []
         
-        prev = None
         curr = head
+        while curr.next:
+            stack.append(curr)
+            curr = curr.next
         
-        while curr:
-            next = curr.next
-            curr.next = prev
-            if next == None:
-                return curr
-            
-            prev = curr
-            curr = next
+        head = curr
+        
+        while stack:
+            curr.next = stack.pop()
+            curr = curr.next
+        curr.next = None
 
-        return curr
+        return head
         
