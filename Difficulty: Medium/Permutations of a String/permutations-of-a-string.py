@@ -1,9 +1,11 @@
 class Solution:
     def findPermutation(self, s):
         # let unordered set, ensure all permutations are unique
-        res = set()
+        
+        res = set() # nPr ~= n! 
         
         n = len(s)
+        used = [False] * n
         
         def permute(arr, i):
             if i == n:
@@ -22,10 +24,14 @@ class Solution:
                 used[j] = False
                 arr.pop()
                 
-        used = [False] * n
         arr = []
         
         permute(arr, 0)
+        
+        # Time complexity:
+        #   Total operation during permutation generation ~= O(n!)  
+        # Auxiliary space:
+        #   Total length of res, used, and arr = n! + n + n ~= O(n!)
             
         return list(res)
         
