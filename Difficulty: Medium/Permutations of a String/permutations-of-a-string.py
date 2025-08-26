@@ -7,9 +7,9 @@ class Solution:
         n = len(s)
         used = [False] * n
         
-        def permute(arr, i):
+        def permute(curr, i):
             if i == n:
-                res.add("".join(arr))
+                res.add("".join(curr))
                 return
             
             for j in range(0, n):
@@ -17,14 +17,14 @@ class Solution:
                     continue
                 
                 used[j] = True
-                arr.append(s[j])
+                curr.append(s[j])
                 
-                permute(arr, i + 1)
+                permute(curr, i + 1)
                 
                 used[j] = False
-                arr.pop()
+                curr.pop()
                 
-        arr = []
+        arr = [] # current permutation
         
         permute(arr, 0)
         
