@@ -5,41 +5,24 @@ class Solution {
         
         int n = s.length();
         for (int i = 0; i < n; i++) {
-            Character c = new Character(s.charAt(i));
-            if (c.equals('(') || c.equals('{') || c.equals('[')) {
+            char c = s.charAt(i);
+            if (c == '(' || c == '{' || c == '[') {
                 stack.push(c);
                 continue;
             }
             
-            if (stack.size() == 0) {
+            if (stack.isEmpty()) {
                 return false;
             }
             
-            Character x = stack.pop();
-            
-            switch (c) {
-                case ')':
-                    if (!x.equals('(')) {
-                        return false;
-                    }
-                    break;
-                case '}':
-                    if (!x.equals('{')) {
-                        return false;
-                    }
-                    break;
-                case ']':
-                    if (!x.equals('[')) {
-                        return false;
-                    }
-                    break;
+            char top = stack.pop();
+            if ((top == '(' && c != ')') ||
+                (top == '{' && c != '}') ||
+                (top == '[' && c != ']')) {
+                return false;
             }
         }
         
-        if (stack.size() > 0) {
-            return false;
-        }
-        
-        return true;
+        return stack.isEmpty();
     }
 }
