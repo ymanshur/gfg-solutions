@@ -1,5 +1,13 @@
 class Solution:
-    
+    def search(self, arr, target):
+        n = len(arr)
+        for i in range(0, n):
+            if arr[i] >= target:
+                break
+        
+        return i
+        
+        
     def lis(self, arr):
         tmp = []
         
@@ -13,10 +21,8 @@ class Solution:
                 tmp.append(arr[i])
                 continue
             
-            for j in range(0, len(tmp)):
-                if tmp[j] >= arr[i]:
-                    tmp[j] = arr[i]
-                    break
+            j = self.search(tmp, arr[i])
+            tmp[j] = arr[i]
         
         return len(tmp)
        
