@@ -1,30 +1,32 @@
+from collections import deque
+
 class Solution:
     def maxOfSubarrays(self, arr, k):
         res = []
         
-        queue = []
+        dq = deque()
         
         for i in range(0, k):
-            while len(queue) > 0 and \
-                arr[i] >= arr[queue[-1]]:
-                queue.pop()
+            while len(dq) > 0 and \
+                arr[i] >= arr[dq[-1]]:
+                dq.pop()
             
-            queue.append(i)
+            dq.append(i)
         
-        res.append(arr[queue[0]])
+        res.append(arr[dq[0]])
         
         n = len(arr)
         for i in range(k, n):
-            while len(queue) > 0 and \
-                arr[i] >= arr[queue[-1]]:
-                queue.pop()
+            while len(dq) > 0 and \
+                arr[i] >= arr[dq[-1]]:
+                dq.pop()
             
-            while len(queue) > 0 and \
-                queue[0] < i - k + 1:
-                queue.pop(0)
+            while len(dq) > 0 and \
+                dq[0] < i - k + 1:
+                dq.popleft()
             
-            queue.append(i)
-            res.append(arr[queue[0]])
+            dq.append(i)
+            res.append(arr[dq[0]])
         
         return res
             
