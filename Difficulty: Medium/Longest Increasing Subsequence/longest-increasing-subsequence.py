@@ -1,11 +1,21 @@
 class Solution:
     def search(self, arr, target):
-        n = len(arr)
-        for i in range(0, n):
-            if arr[i] >= target:
-                break
+        index = 0
         
-        return i
+        low = 0
+        high = len(arr)
+        while low <= high:
+            mid = low + (high - low) // 2
+            
+            if arr[mid] == target:
+                return mid
+            
+            if arr[mid] > target:
+                high = mid - 1
+            else:
+                low = mid + 1
+        
+        return low
         
         
     def lis(self, arr):
