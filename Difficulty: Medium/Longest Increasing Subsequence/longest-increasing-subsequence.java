@@ -3,23 +3,19 @@ class Solution {
         int n = arr.length;
         
         int[] prefix = new int[n];
-        prefix[0] = 1;
         
-        int max = prefix[0];
-        for (int i = 1; i < n; i++) {
+        for (int i = 0; i < n; i++) {
             prefix[i] = 1;
             
-            int maxPrev = 0;
             for (int j = i - 1; j >= 0; j--) {
-                if (arr[j] < arr[i]) {
-                    if (prefix[j] > maxPrev) {
-                        maxPrev = prefix[j];
-                    }
+                if (arr[j] < arr[i] && prefix[j] + 1 > prefix[i]) {
+                    prefix[i] = prefix[j] + 1;
                 }
             }
-            
-            prefix[i] += maxPrev;
-            
+        }
+        
+        int max = 1;
+        for (int i = 0; i < n; i++) {
             if (prefix[i] > max) {
                 max = prefix[i];
             }
