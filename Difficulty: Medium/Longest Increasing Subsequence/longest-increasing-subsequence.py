@@ -1,9 +1,8 @@
 class Solution:
     def search(self, arr, target):
-        index = 0
-        
         low = 0
         high = len(arr)
+        
         while low <= high:
             mid = low + (high - low) // 2
             
