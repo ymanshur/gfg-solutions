@@ -1,20 +1,17 @@
 class Solution:
-    def nonRepeatingChar(self,s):
-        n = len(s)
+    def nonRepeatingChar(self, s):
+        counter = [0] * 26
         
-        for i in range(n):
-            found = False
-            
-            c = s[i]
-            for j in range(n):
-                if j == i:
-                    continue
+        for c in s:
+            counter[self._indexOf(c)] += 1
                 
-                if c == s[j]:
-                    found = True
-                    break
-            
-            if not found:
+        for c in s:
+            if counter[self._indexOf(c)] == 1:
                 return c
         
         return '$'
+    
+    def _indexOf(self, c):
+        return ord(c) - ord('a')
+    
+    
